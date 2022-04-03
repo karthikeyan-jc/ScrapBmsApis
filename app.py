@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask, request
 import api_helper
 
@@ -18,11 +17,12 @@ def get_districts(territory_id):
     territory_id=int(territory_id)
     return api_helper.get_districts(territory_id)
 
-@app.route('/movieanalyticsbyday',methods=['GET'])
-def get_movie_analytics_by_day():
+@app.route('/movieanalytics',methods=['GET'])
+def get_movie_analytics_by_option():
     filters=request.get_json()
-    return api_helper.get_movie_analytics_by_day(filters)
-    
+    criteria=request.args.get('criteria')
+    return api_helper.get_movie_analytics(filters,criteria)
+
 
 if __name__ == "__main__":
     app.run()

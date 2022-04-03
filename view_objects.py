@@ -10,5 +10,5 @@ class MoviePerformanceAnalytics:
         if(self.total_tickets==0):
             self.total_tickets=1
         occupancy=(self.tickets_sold/self.total_tickets)*100
-        return{'shows':self.shows,'total_tickets':self.total_tickets,'tickets_sold':self.tickets_sold,'occupancy':occupancy,'housefull_shows':self.housefull_shows,'revenue':self.revenue}
+        return{'shows':self.shows,'total_tickets':self.total_tickets,'tickets_sold':self.tickets_sold,'occupancy':round(occupancy,2),'housefull_shows':self.housefull_shows,'revenue':self.revenue}
 
