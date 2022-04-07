@@ -98,8 +98,8 @@ def get_movie_analytics(filters,criteria):
     int_filter_map['d.district_id']=district_id
     movie_id=filters[Movie.COL_MOVIE_ID]
     str_filter_map['shows.movie_id']=movie_id
-    from_date=filters['from_date']
-    to_date=filters['to_date']
+    from_date=str(filters['from_date'])
+    to_date=str(filters['to_date'])
 
     query="select s.state_id,s.state,t.territory_id,t.territory,d.district_id,d.dist_name,shows.movie_id,shows.theatre_id,shows.show_id,"
     query+=' shows.cut_off_time,shows.json_data,IFNULL(theatres.theatre_name,\' \') as theatre_name'
@@ -110,9 +110,9 @@ def get_movie_analytics(filters,criteria):
     query+=' where (1=1)'
     query=add_filters(query,int_filter_map,True)
     query=add_filters(query,str_filter_map,False)
-    if from_date is not None:
+    if from_date is not None and len(from_date)==8:
         query+= ' and shows.cut_off_time>'+'\'{}\''.format(from_date+'0000')
-    if to_date is not None:
+    if to_date is not None and len(to_date)==8:
         query+= ' and shows.cut_off_time<'+'\'{}\''.format(to_date+'2359')
 
     connection=db_util.get_connection()
