@@ -17,6 +17,12 @@ def get_districts(territory_id):
     territory_id=int(territory_id)
     return api_helper.get_districts(territory_id)
 
+@app.route('/get_movies',methods=['GET'])
+def get_movies():
+    filters=request.get_json()
+    movies_from=filters['from_date']+'0000'
+    return api_helper.get_movies(movies_from)
+
 @app.route('/movieanalytics',methods=['GET'])
 def get_movie_analytics_by_option():
     filters=request.get_json()

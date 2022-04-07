@@ -63,10 +63,29 @@ def get_districts(territory_id):
         dist_list=territory_district_map.get(district.territory)
         if dist_list is None:
             dist_list=[]
-            dist_list.append(district.to_json())
-            territory_district_map[district.territory]=dist_list
+        dist_list.append(district.to_json())
+        territory_district_map[district.territory]=dist_list
     connection.close()
     return json.dumps(territory_district_map)
+
+def get_movies(from_date):
+    query="select movies.movie_id,movie_name from shows inner join"
+    query+=" movies on shows.movie_id = movies.movie_id where cut_off_time > {} group by movie_id".format(from_date)
+    
+    connection=db_util.get_connection()
+    cursor=connection.cursor(dictionary=True)
+    cursor.execute(query)
+    resultset=cursor.fetchall()
+    connection.close()
+
+    movies=[]
+    for row in resultset:
+        movie=Movie()
+        movie.load(row)
+        movies.append(movie.to_json())
+    
+    return json.dumps(movies)
+
 
 def get_movie_analytics(filters,criteria):
     int_filter_map={}
@@ -135,7 +154,10 @@ def get_movie_analytics(filters,criteria):
         housefulls=0
         movie_revenue=0
         for show in show_list:
-            show_details=json.loads(show.json_data)
+            try:
+                show_details=json.loads(show.json_data)
+            except:
+                continue
             ticket_categories=show_details['BookMyShow']['arrShowInfo']
             show_total_tickets=0
             show_available_tickets=0

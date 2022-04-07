@@ -42,6 +42,17 @@ class District:
 
 class Movie:
     COL_MOVIE_ID='movie_id'
+    COL_MOVIE_NAME='movie_name'
+
+    def load(self,row):
+        self.movie_id=row[Movie.COL_MOVIE_ID]
+        m_name=row[Movie.COL_MOVIE_NAME]
+        m_name=m_name.replace('-',' ')
+        m_name=m_name.upper()
+        self.movie_name=m_name
+    
+    def to_json(self):
+        return{'movie_id':self.movie_id,'movie_name':self.movie_name}
 
 class Theatre:
     COL_THEATRE_ID='theatre_id'
