@@ -143,6 +143,7 @@ def get_movie_analytics(filters,criteria):
         show_list.append(show)
         show_map_extended[key]=show_list
 
+    aggregate = MoviePerformanceAnalytics(0,0,0,0,0)
     
     show_map_condensed={}
 
@@ -172,6 +173,7 @@ def get_movie_analytics(filters,criteria):
             housefulls = housefulls+1 if show_available_tickets==0 else housefulls
             movie_revenue+=show_revenue    
         movie_perf_analytics=MoviePerformanceAnalytics(shows,movie_total_tickets,movie_tickets_sold,housefulls,movie_revenue)
+        aggregate.update_aggregate(shows,movie_total_tickets,movie_tickets_sold,housefulls,movie_revenue)
         if(criteria==MOVIE_ANALYTICS_CRITERIA_BY_DAY):
             final_key=date = datetime.strptime(key, '%Y%m%d').strftime('%d/%m/%Y')
         elif(criteria==MOVIE_ANALYTICS_CRITERIA_BY_THEATRE):
@@ -181,6 +183,8 @@ def get_movie_analytics(filters,criteria):
         elif(criteria==MOVIE_ANALYTICS_CRITERIA_BY_DISTRICT):
             final_key=str(show.dist_name)
         show_map_condensed[final_key]=movie_perf_analytics.to_json()
+    show_map_condensed['aggregate']=aggregate.to_json()
+    
     return show_map_condensed
         
 
