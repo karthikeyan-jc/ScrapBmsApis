@@ -3,3 +3,4 @@ __pycache__
 geckodriver.log
 log.txt
 scrapper.log
+.vscode
