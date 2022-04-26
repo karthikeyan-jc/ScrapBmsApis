@@ -173,7 +173,7 @@ def get_movie_analytics(filters,criteria):
                 show_total_tickets+=this_category_tickets
                 this_category_avail_tickets=int(ticket_category['AvailableSeats'])
                 show_available_tickets+=this_category_avail_tickets
-                show_revenue+=int(ticket_category['Price'])*(this_category_tickets-this_category_avail_tickets)
+                show_revenue+=int(float(ticket_category['Price']))*(this_category_tickets-this_category_avail_tickets)
             shows+=1
             movie_total_tickets+=show_total_tickets
             movie_tickets_sold+=(show_total_tickets-show_available_tickets)
