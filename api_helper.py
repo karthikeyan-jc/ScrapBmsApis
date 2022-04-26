@@ -4,6 +4,9 @@ from view_objects import MoviePerformanceAnalytics
 import json
 from datetime import datetime
 from flask import jsonify, make_response
+import logging
+
+logging.basicConfig(filename='apis.log',filemode='a', format='%(asctime)s|%(name)s|%(levelname)s|%(message)s')
 
 MOVIE_ANALYTICS_CRITERIA_BY_DAY='day'
 MOVIE_ANALYTICS_CRITERIA_BY_THEATRE='theatre'
@@ -114,6 +117,8 @@ def get_movie_analytics(filters,criteria):
         query+= ' and shows.cut_off_time>'+'\'{}\''.format(from_date+'0000')
     if to_date is not None and len(to_date)==8:
         query+= ' and shows.cut_off_time<'+'\'{}\''.format(to_date+'2359')
+
+    logging.warning('API QUERY :%s',query)
 
     connection=db_util.get_connection()
     cursor=connection.cursor(dictionary=True)

@@ -1,6 +1,9 @@
 from flask import Flask, request
 import api_helper
 from flask_cors import CORS
+import logging
+
+logging.basicConfig(filename='apis.log',filemode='a', format='%(asctime)s|%(name)s|%(levelname)s|%(message)s')
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -29,8 +32,11 @@ def get_movies():
 def get_movie_analytics_by_option():
     filters=request.get_json()
     criteria=request.args.get('criteria')
-    return api_helper.get_movie_analytics(filters,criteria)
-
+    try:
+        return api_helper.get_movie_analytics(filters,criteria)
+    except:
+        logging.exception('API CALL FAILED')
+        return "APPLICATION ERROR",500
 
 if __name__ == "__main__":
     app.run()
