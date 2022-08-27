@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "7df99747-80ca-45d5-8da9-b24f99a7a249",
+		"name": "SCRAP BMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/get_states",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/get_states",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"get_states"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/get_territories/<state_id>",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/get_territories/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"get_territories",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/get_districts/<territory_id>",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/get_districts/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"get_districts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/get_movies",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from_date\":\"20220801\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/get_movies",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"get_movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movieanalytics?criteria=day",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"criteria\":\"day\",\n    \"from_date\":\"20220801\",\n    \"to_date\":\"20220829\",\n    \"state_id\":1,\n    \"territory_id\":0,\n    \"district_id\":0,\n    \"movie_id\":\"ET00330540\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/movieanalytics?criteria=day",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"movieanalytics"
+					],
+					"query": [
+						{
+							"key": "criteria",
+							"value": "day"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movieanalytics?criteria=theatre",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"criteria\":\"day\",\n    \"from_date\":\"20220801\",\n    \"to_date\":\"20220829\",\n    \"state_id\":1,\n    \"territory_id\":0,\n    \"district_id\":0,\n    \"movie_id\":\"ET00330540\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/movieanalytics?criteria=theatre",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"movieanalytics"
+					],
+					"query": [
+						{
+							"key": "criteria",
+							"value": "theatre"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movieanalytics?criteria=territory",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"criteria\":\"day\",\n    \"from_date\":\"20220801\",\n    \"to_date\":\"20220829\",\n    \"state_id\":1,\n    \"territory_id\":0,\n    \"district_id\":0,\n    \"movie_id\":\"ET00330540\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/movieanalytics?criteria=territory",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"movieanalytics"
+					],
+					"query": [
+						{
+							"key": "criteria",
+							"value": "territory"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movieanalytics?criteria=district",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"criteria\":\"day\",\n    \"from_date\":\"20220801\",\n    \"to_date\":\"20220829\",\n    \"state_id\":1,\n    \"territory_id\":0,\n    \"district_id\":0,\n    \"movie_id\":\"ET00330540\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/movieanalytics?criteria=district",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"movieanalytics"
+					],
+					"query": [
+						{
+							"key": "criteria",
+							"value": "district"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
